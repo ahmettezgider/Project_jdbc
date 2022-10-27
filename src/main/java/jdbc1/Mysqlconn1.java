@@ -1,11 +1,19 @@
 package jdbc1;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class Mysqlconn1 {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         // jdbc connection icin kullanilacak
+        FileInputStream fis = new FileInputStream("src/main/resources/DB.properties");
+        Properties properties = new Properties();
+        properties.load(fis);
+
         Connection conn;
         Statement statement;
         ResultSet resultSet;
@@ -13,11 +21,13 @@ public class Mysqlconn1 {
         // url = "jdbc:mysql://[ ip | localhost | 127.0.0.1 ]:[port]/[database]",
         // jdbc:mysql://[ip]:3306/sakila
         // https://localhost/sakila
-
+        String hostname = properties.getProperty("gs.hostname");
+        String user = properties.getProperty("gs.user");
+        String password = properties.getProperty("gs.pass");
         conn = DriverManager.getConnection(
-                "jdbc:mysql://[ip]:3306/sakila",
-                "user",
-                "pass");
+                "jdbc:mysql://" + hostname + ":3306/sakila",
+                user,
+                password);
 
         statement = conn.createStatement();
 
@@ -32,7 +42,7 @@ public class Mysqlconn1 {
 
         statement.close();
         conn.close();
-
+        fis.close();
 
     }
 
