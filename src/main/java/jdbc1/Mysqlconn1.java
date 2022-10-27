@@ -11,13 +11,13 @@ public class Mysqlconn1 {
         ResultSet resultSet;
 
         // url = "jdbc:mysql://[ ip | localhost | 127.0.0.1 ]:[port]/[database]",
-        // jdbc:mysql://142.93.110.12:3306/sakila
+        // jdbc:mysql://[ip]:3306/sakila
         // https://localhost/sakila
 
         conn = DriverManager.getConnection(
-                "jdbc:mysql://142.93.110.12:3306/sakila",
-                "gsuser",
-                "Gsuser!123456");
+                "jdbc:mysql://[ip]:3306/sakila",
+                "user",
+                "pass");
 
         statement = conn.createStatement();
 

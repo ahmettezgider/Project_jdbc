@@ -14,9 +14,9 @@ public class MysqlProcessBase {
     @BeforeTest
     public void beforeTest() throws SQLException {
         conn = DriverManager.getConnection(
-                "jdbc:mysql://142.93.110.12:3306/sakila",
-                "gsuser",
-                "Gsuser!123456"
+                "jdbc:mysql://[ip]:3306/sakila",
+                "user",
+                "pass"
         );
         statement = conn.createStatement();
     }
